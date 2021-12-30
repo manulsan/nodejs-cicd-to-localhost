@@ -1,5 +1,5 @@
 # Getting Started
-This is simple demo to show CI/CD working process at the GitHub and also how to deploy to local host via "Git Actions"
+This is simple demo to show CI/CD working process at the GitHub and also how to deploy application to local host via "Git Actions"
 Most of demo seems to co-work with cloud service like AWS,DigitalOcean, etc....
 This is for simple host user 
 
