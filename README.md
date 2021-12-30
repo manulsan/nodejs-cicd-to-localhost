@@ -7,11 +7,16 @@ This is for simple host user
   "app coding host"                "action on event"                  "app working host"
       "git push"                     "build/deploy"                       app is running
       
-    reference source : https://www.youtube.com/watch?v=6-RtA6FlbgQ  
+  reference source : https://www.youtube.com/watch?v=6-RtA6FlbgQ  
+  main differences between "source" and "my stuffs" is deployment
+  "source" deploy app to digitalocean and "my stuffs" deploy to "my computer-linux(ubutu 20.04)
 ## Requirements
    - Hosts
       1. "local host" - for app dev/coding job
       2. "remote host" - for app running ("loca lhost" can be "remote host")
+      3. Backend nodejs applicaton, refers https://www.w3schools.com/nodejs/nodejs_mongodb.asp
+      4. Frontend react application, refers https://www.w3schools.com/react/default.asp
+      5. GitHub Actions and Runners, refers https://docs.github.com/en/actions
 
 # Work Steps
   - Make repository at the GitHub named nodejs-cicd-to-localhost
@@ -41,7 +46,68 @@ This is for simple host user
   - // stop app at the terminal with ctrl+c
   - cd ~/project/nodejs-cicd-to-localhost  // main forlder
   - vi .gitignore              // add "node_modules"
+  - git add .
+  - git commit -m "Application is ready"
+  - git push origin main
 
+## Setup "GitHub Actions" and Install runners at the remote host 
+  - goto https://github.com/manulsan/nodejs-cicd-to-localhost/actions/new
+  - click "Settings" 
+  - click "Actions"=>"Runners" // refers https://docs.github.com/en/actions/hosting-your-own-runners
+  - click button named "New self-hosted runner"
+  - select os "linux" adn follow-up the commands at the webpage at the "remote host linux"
+  - At /var/www/actions-runner$
+  - sudo ./svc.sh install  
+  - sudo ./svc.sh start
+  - // check runner status at repo "Settings" => "Runners" , check "Idle" status then ok
+  
+  - // change nginx config file  
+     - localtion:/etc/nginx/site-available/default
+     - refers repo/nginx_config/*
+  - sudo service nginx restart   // check nginx is well congigured and working well.
+  - sudo visudo -f /etc/sudoers.d/alexyoon
+     
+  select Node.js at the  "Suggested for this repository"  
+## Setup "remote host" with Runners
+  ### OS : ubuntu 20.04
+  ### Setup nginx on ubuntu
+  - // reference  => https://www.nginx.com/resources/wiki/start/topics/tutorials/install/  
+  - sudo apt-get update  //Update Software Repositories
+  - sudo apt-get install nginx  // install nginx from ubuntu repositories
+  - nginx -v           // verify the installation
+  - sudo systemctl status nginx
+  - sudo systemctl restart nginx
+  - sudo ufw app list           // display available nginx profiles
+  - sudo ufw allow 'nginx http' // if  there is no list, execute left command
+  - sudo ufw reload 
+  - sudo ufw allow 'nginx https' // for encrypted(https) traffics
+  - sudo ufw allow 'nginx full'  // for both
+  - curl http://127.0.0.1        // for nginx test .   or curl -i 127.0.0.1 
+  
+  ### Setup nodejs on ubuntu
+  - sudo apt update
+  - sudo apt install nodejs
+  - nodejs -v
+  - sudo apt install npm   // install node.js package manager
+  
+  ### Setup new user on ubunt and do job for Runners
+  - sudo passwd            // setting up default root user
+  - su -
+  - adduser alexyoon  
+  - sudo usermod -aG sudo alexyoon
+  - su - alexyoon
+  - cd /var/www
+  - mkdir mywebsite
+
+
+## Configure "GitHub Actions" and other setup
+Goto repository https://github.com/manulsan/nodejs-cicd-to-localhost
+
+  -
+
+
+
+  
 
   
 
