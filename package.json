@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-cicd-to-localhost",
+  "version": "1.0.0",
+  "description": "This is simple demo to show CI/CD working process at the GitHub and also how to deploy application to local host via \"Git Actions\" Most of demo seems to co-work with cloud service like AWS,DigitalOcean, etc.... This is for simple host user",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manulsan/nodejs-cicd-to-localhost.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manulsan/nodejs-cicd-to-localhost/issues"
+  },
+  "homepage": "https://github.com/manulsan/nodejs-cicd-to-localhost#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
