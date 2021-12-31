@@ -50,26 +50,16 @@ This is for simple host user
   - git commit -m "Application is ready"
   - git push origin main
 
-## Setup "GitHub Actions" and Install runners at the remote host 
-  - goto https://github.com/manulsan/nodejs-cicd-to-localhost/actions/new
-  - click "Settings" 
-  - click "Actions"=>"Runners" // refers https://docs.github.com/en/actions/hosting-your-own-runners
-  - click button named "New self-hosted runner"
-  - select os "linux" adn follow-up the commands at the webpage at the "remote host linux"
-  - At /var/www/actions-runner$
-  - sudo ./svc.sh install  
-  - sudo ./svc.sh start
-  - // check runner status at repo "Settings" => "Runners" , check "Idle" status then ok
-  
-  - // change nginx config file  
-     - localtion:/etc/nginx/site-available/default
-     - refers repo/nginx_config/*
-  - sudo service nginx restart   // check nginx is well congigured and working well.
-  - sudo visudo -f /etc/sudoers.d/alexyoon
-     
-  select Node.js at the  "Suggested for this repository"  
-## Setup "remote host" with Runners
+## Setup "remote host" working environment
   ### OS : ubuntu 20.04
+  ### Setup new user for  Runners job
+  - sudo passwd            // setting up default root user
+  - su -
+  - adduser alexyoon  
+  - sudo usermod -aG sudo alexyoon
+  - su - alexyoon
+  - cd /var/www
+  - mkdir actions_runner
   ### Setup nginx on ubuntu
   - // reference  => https://www.nginx.com/resources/wiki/start/topics/tutorials/install/  
   - sudo apt-get update  //Update Software Repositories
@@ -89,26 +79,38 @@ This is for simple host user
   - sudo apt install nodejs
   - nodejs -v
   - sudo apt install npm   // install node.js package manager
-  
-  ### Setup new user on ubunt and do job for Runners
-  - sudo passwd            // setting up default root user
-  - su -
-  - adduser alexyoon  
-  - sudo usermod -aG sudo alexyoon
-  - su - alexyoon
-  - cd /var/www
-  - mkdir mywebsite
+
+## Configure  "GitHub Actions"
+  ### At git repo
+  - goto https://github.com/manulsan/nodejs-cicd-to-localhost/actions/new
+  - click "Settings" 
+  - click "Actions"=>"Runners" // refers https://docs.github.com/en/actions/hosting-your-own-runners
+  - click button named "New self-hosted runner"
+  - select os "linux" adn follow-up the commands at the webpage at the "remote host linux"
+
+  - Making actions
+    - click Actions => Make new Actions
+    - refer the .github/workflows/node.js.yml  
+
+## Configure "remote host"   logined by alexyoon  
+  - cd /var/www/
+  - make cations-runners
+  - "At /var/www/actions-runner"
+  - sudo ./svc.sh install  
+  - sudo ./svc.sh start
+  - "check runner status at repo "Settings" => "Runners" , check "Idle" status then ok"
+  - "change nginx config file"
+     - localtion:/etc/nginx/site-available/default
+     - refers repo/nginx_config/*
+  - sudo service nginx restart   // check nginx is well congigured and working well.
+  - sudo visudo -f /etc/sudoers.d/alexyoon
+     alexyoon ALL=(ALL) NOPASSWD: /usr/sbin/service nginx start, /usr/sbin/service nginx stop,/use/sbin/service nginx restart
+       
+  - "----- for application manager -----"
+     - cd /var/www/_actions_runner/_work/nodejs-cicd-to-locahost/nodejs-cicd-to-locahost
+     - sudo npm install pm2@latest -g
+     - pm status
+     - pm2 start npm --name "mywebsite" -- run start   // start package.json
+     - pm2 save
 
 
-## Configure "GitHub Actions" and other setup
-Goto repository https://github.com/manulsan/nodejs-cicd-to-localhost
-
-  -
-
-
-
-  
-
-  
-
-      
