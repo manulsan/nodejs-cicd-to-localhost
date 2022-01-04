@@ -3,8 +3,10 @@ This is simple demo to show CI/CD working process at the GitHub and also how to 
 Most of demo seems to co-work with cloud service like AWS,DigitalOcean, etc....
 This is for simple host user 
 
-   "local host" -------------------->  Githug  --------------------> "remote host"
+   "local host" -------------------->  Github  --------------------> "remote host"
+
   "app coding host"                "action on event"                  "app working host"
+  
       "git push"                     "build/deploy"                       app is running
       
   reference source : https://www.youtube.com/watch?v=6-RtA6FlbgQ  

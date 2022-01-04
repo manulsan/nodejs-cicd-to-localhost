@@ -38,8 +38,7 @@ server {
 	#
 	# include snippets/snakeoil.conf;
 
-	root /var/www/_work/nodejs-cicd-to-localhost/nodejs-cicd-to-localhost;
-
+	root /var/www/actions-runner/_work/nodejs-cicd-to-localhost/nodejs-cicd-to-localhost;
 	# Add index.php to the list if you are using PHP
 	index index.html index.htm index.nginx-debian.html;
 
