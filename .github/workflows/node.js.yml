@@ -23,18 +23,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-#        cache: 'npm'
-    - run: 
-        npm i
-        cd frontend
-        npm i
-        npm run build
-        cd ..
-        pm2 stop 0
-        pm2 start 0
-        pm2 save
-        sudo service nginx restart
+        cache: 'npm'
+    - run: npm ci
+    - run: cd frontend
+    - run: npm i
+    - run: npm run build
+    - run: cd ..
+    - run: pm2 stop 0
+    - run: pm2 start 0
+    - run: pm2 save
+    - run: sudo service nginx restart
 #       sudo service nginx restart
