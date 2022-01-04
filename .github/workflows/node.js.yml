@@ -29,8 +29,8 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: cd frontend
-    - run: npm ci
-    - run: npm build
+    - run: npm i
+    - run: npm run-scripte build
     - run: cd ..
     - run: pm2 stop 0
     - run: pm2 start 0
