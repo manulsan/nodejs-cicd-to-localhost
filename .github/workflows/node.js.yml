@@ -30,7 +30,7 @@ jobs:
     - run: npm ci
     - run: cd frontend
     - run: npm ci
-    - run: npm run build
+    - run: npm build
     - run: cd ..
     - run: pm2 stop 0
     - run: pm2 start 0
