@@ -6,7 +6,7 @@ This is for simple host user
    "local host" -------------------->  Github  --------------------> "remote host"
 
   "app coding host"                "action on event"                  "app working host"
-  
+
       "git push"                     "build/deploy"                       app is running
       
   reference source : https://www.youtube.com/watch?v=6-RtA6FlbgQ  
@@ -96,7 +96,7 @@ This is for simple host user
 
 ## Configure "remote host"   logined by alexyoon  
   - cd /var/www/
-  - make cations-runners
+  - make actions-runner
   - "At /var/www/actions-runner"
   - sudo ./svc.sh install  
   - sudo ./svc.sh start
@@ -106,7 +106,7 @@ This is for simple host user
      - refers repo/nginx_config/*
   - sudo service nginx restart   // check nginx is well congigured and working well.
   - sudo visudo -f /etc/sudoers.d/alexyoon
-     alexyoon ALL=(ALL) NOPASSWD: /usr/sbin/service nginx start, /usr/sbin/service nginx stop,/use/sbin/service nginx restart
+     alexyoon ALL=(ALL) NOPASSWD: /usr/sbin/service nginx start, /usr/sbin/service nginx stop,/usr/sbin/service nginx restart
        
   - "----- for application manager -----"
      - cd /var/www/_actions_runner/_work/nodejs-cicd-to-locahost/nodejs-cicd-to-locahost
